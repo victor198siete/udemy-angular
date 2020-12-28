@@ -8,55 +8,43 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 @Injectable()
 export class RecipeService {
     recipesChanged = new Subject();
-    private recipes: Recipe [] = [
-        new Recipe(
-            'Spaghetti and Shripms',
-            'A delicated plate of italian food',
-            'https://p1.pxfuel.com/preview/695/472/1011/spaghetti-shrimp-italian-food-royalty-free-thumbnail.jpg',
-            [
-                new Ingredient('Spaghetti', 1,),
-                new Ingredient('Tomatoes', 1,),
-                new Ingredient('Shrimps', 3,),
-            ]),
-        new Recipe(
-            'Paella of the Sea',
-            'A delicated plate of Spanish food',
-            'https://p1.pxfuel.com/preview/553/409/168/paella-rice-crustaceans-food-royalty-free-thumbnail.jpg',
-            [
-                new Ingredient('Rice', 1,),
-                new Ingredient('Clams', 10,),
-                new Ingredient('Shrimps', 5,),
-            ]),
-        new Recipe(
-            'Noodles with Octupus and Shrimps',
-            'Another delicated plate of italian food',
-            'https://p1.pxfuel.com/preview/481/106/466/food-eat-soy-noodles-kitchen-royalty-free-thumbnail.jpg',
-            [
-                new Ingredient('Noodles', 1,),
-                new Ingredient('Octupus', 1,),
-                new Ingredient('Shrimps', 3,),
-            ]),
-        new Recipe(
-            'Noodles with Octupus and Shrimps',
-            'Another delicated plate of italian food',
-            'https://p1.pxfuel.com/preview/481/106/466/food-eat-soy-noodles-kitchen-royalty-free-thumbnail.jpg',
-            [
-                new Ingredient('Noodles', 1,),
-                new Ingredient('Octupus', 1,),
-                new Ingredient('Shrimps', 3,),
-            ]),
-        new Recipe(
-            'Scnhitzel',
-            'A delicated plate of pork',
-            'https://v1.nitrocdn.com/eSLhakvQipAhEWtksvxrnpAZbKWwysTe/assets/static/source/rev-744f298/wp-content/uploads/2019/10/pork-schnitzel-3-1170x.jpg',
-            [
-                new Ingredient('Pork', 1,),
-                new Ingredient('Flour', 1,),
-            ]),
-
-      ];
+    private recipes: Recipe[] = [];
+    // private recipes: Recipe [] = [
+    //     new Recipe(
+    //         'Spaghetti and Shripms',
+    //         'A delicated plate of italian food',
+    //         'https://p1.pxfuel.com/preview/695/472/1011/spaghetti-shrimp-italian-food-royalty-free-thumbnail.jpg',
+    //         [
+    //             new Ingredient('Spaghetti', 1,),
+    //             new Ingredient('Tomatoes', 1,),
+    //             new Ingredient('Shrimps', 3,),
+    //         ]),
+    //     new Recipe(
+    //         'Paella of the Sea',
+    //         'A delicated plate of Spanish food',
+    //         'https://p1.pxfuel.com/preview/553/409/168/paella-rice-crustaceans-food-royalty-free-thumbnail.jpg',
+    //         [
+    //             new Ingredient('Rice', 1,),
+    //             new Ingredient('Clams', 10,),
+    //             new Ingredient('Shrimps', 5,),
+    //         ]),
+    //     new Recipe(
+    //         'Noodles with Octupus and Shrimps',
+    //         'Another delicated plate of italian food',
+    //         'https://p1.pxfuel.com/preview/481/106/466/food-eat-soy-noodles-kitchen-royalty-free-thumbnail.jpg',
+    //         [
+    //             new Ingredient('Noodles', 1,),
+    //             new Ingredient('Octupus', 1,),
+    //             new Ingredient('Shrimps', 3,),
+    //         ]),
+    //   ];
 
     constructor(private shoppingListService: ShoppingListService) {}
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipes() {
         return this.recipes.slice() ;
